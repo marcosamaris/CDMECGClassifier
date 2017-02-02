@@ -1,0 +1,63 @@
+
+
+WinAdd("tt", title = "Proceso KDD de ECG's de Infarto Agudo de Miocardio", pos =NULL,height=600, width=800)
+MenuAdd("$Tk.tt/&Cargar DB")
+MenuAdd("$Tk.tt/&Preprocesamiento")
+MenuAdd("$Tk.tt/&Transformación")
+MenuAdd("$Tk.tt/C&lasificación")
+MenuAdd("$Tk.tt/&Graficos")
+MenuAdd("$Tk.tt/&Ayuda")
+
+MenuNames()
+
+(MenuItems("$Tk.tt/&Cargar DB"))  # Still nothing in it
+#MenuAddItem("$Tk.tt/&Cargar DB", "ECG &Infartados", "CargarECGInfartados()")
+#MenuAddItem("$Tk.tt/&Cargar DB", "ECG &Sanos", "CargarECGSanos()")
+MenuAddItem("$Tk.tt/&Cargar DB", "Cargar ECG's", "CargarECGInfartados();CargarECGSanos()")
+MenuAddItem("$Tk.tt/&Cargar DB", "Salir", "WinDel('tt')")
+
+
+(MenuItems("$Tk.tt/&Preprocesamiento"))  # Still nothing in it
+MenuAddItem("$Tk.tt/&Preprocesamiento", "&Filtrar ECG", "FiltrarMuestras()")
+MenuAddItem("$Tk.tt/&Preprocesamiento", "&Detectar RR", "DetectarR()")
+MenuAddItem("$Tk.tt/&Preprocesamiento", "&Hallar HRV", "HRV()")
+
+
+(MenuItems("$Tk.tt/&Transformación"))  # Still nothing in it
+MenuAddItem("$Tk.tt/&Transformación", "&Normalizar", "Normalizar()")
+MenuAddItem("$Tk.tt/&Transformación", "&PAAapproximation", "PAAprox()")
+MenuAddItem("$Tk.tt/&Transformación", "&SAX", "SAX()")
+MenuAddItem("$Tk.tt/&Transformación", "&Matrix Euclidiana", "EucMatrix()")
+MenuAddItem("$Tk.tt/&Transformación", "M&atrix CDM", "CDMMatrix()")
+
+
+(MenuItems("$Tk.tt/C&lasificación"))  # Still nothing in it
+MenuAddItem("$Tk.tt/C&lasificación", "&KNN", "print(ls(envir = .GlobalEnv))")
+MenuAddItem("$Tk.tt/C&lasificación", "K-&Means", "cat('yo!\n')")
+MenuAddItem("$Tk.tt/C&lasificación", "&Dendograma", "cat('yo!\n')")
+
+
+(MenuItems("$Tk.tt/&Graficos"))  # Still nothing in it
+MenuAddItem("$Tk.tt/&Graficos", "&Plots", "print(ls(envir = .GlobalEnv))")
+MenuAddItem("$Tk.tt/&Graficos", "P&oints", "cat('yo!\n')")
+MenuAddItem("$Tk.tt/&Graficos", "&Hist", "cat('yo!\n')")
+
+
+(MenuItems("$Tk.tt/&Ayuda"))  # Still nothing in it
+MenuAddItem("$Tk.tt/&Ayuda", "&Ayuda", "print(ls(envir = .GlobalEnv))")
+MenuAddItem("$Tk.tt/&Ayuda", "&Acerca de...", "cat('yo!\n')")
+
+#Creación de la ventana
+
+
+elim <- function(){
+  elim.panel = rp.control(title = "Seleccionar DF", size = c(100, 100), panelname = "Elim")
+  rp.textentry(elim.panel, var=zzdf, title="DF a eliminar missing: ",initval="")
+  rp.button(elim.panel, title = "Ejecutar", action = ej, quitbutton = TRUE)
+}
+#Creamos la acción de la ventana
+ej <- function(panel) {
+  nomiss(eval(parse(text=panel$zzdf)))
+  panel
+}
+#elim()
