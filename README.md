@@ -1,4 +1,4 @@
-# Classification of Electrocardiograms of Myocardial Infartion with CDM in Scilab
+# Classification of Electrocardiograms of Myocardial Infartion with CDM in R
 
 This paper shows the work continuity of the Research Group in Biomedical Engineering (GIIB
 for its acronym in Spanish) in the area of electrophysiological signal processing, about developing
